@@ -2,18 +2,21 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-class Lens (val dist: Double, val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600) {
+class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600) {
 
     val pixelDim: Double = this.width / this.xRes
     val height: Double = this.yRes * pixelDim
-    val pixels = Array<Array<Pixel>>(yRes) { x -> Array<Pixel>(xRes) {Pixel()}}
+    val dist: Double = ((width/2) / (Math.tan(0.6911504/2)))
+    val pixels = Array<Array<Pixel>>(yRes) {Array<Pixel>(xRes) {Pixel()}}
 
     fun shootRays(): Unit {
+//        println("dist: " + dist)
         val scene: Scene = Scene()
         val midPix: Double = pixelDim / 2
 //        println("xRes: " + xRes)
 //        println("yRes: " + yRes)
 //        println("width: " + width)
+//        println("tan: " + (Math.tan(0.6911504/2)))
 //        println("height: " + height)
 //        println("pixelDim: " + pixelDim)
 //        println("midPix: " + midPix)
@@ -35,7 +38,7 @@ class Lens (val dist: Double, val width: Double = 600.0, val xRes: Int = 600, va
 /*        pixel = pixels[0][0]
         rayDot = point0 + (horizAdder * 0)
         ray = !Vector(rayDot.x, rayDot.y, rayDot.z)
-        val color = scene.computeColor(ray)
+        val color = scene.trace(ray)
         pixel.color = color
         +pixel*/
 
@@ -55,7 +58,7 @@ class Lens (val dist: Double, val width: Double = 600.0, val xRes: Int = 600, va
                 ray = !Vector(rayDot.x, rayDot.y, rayDot.z)
 //                println("ray: " + ray.x  + " " + ray.y + " " + ray.z)
 //                println("ray Len: " + ray.getLength())
-                val color = scene.computeColor(ray, camVector)
+                val color = scene.trace(ray, camVector)
                 pixel.color = color
                 +pixel
             }
