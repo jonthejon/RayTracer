@@ -32,7 +32,7 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
         var vertAdder: Point = Point(0.0, 0.0, -pixelDim)
         var rayDot: Point
         var ray: Vector
-        val camVector: Vector = Vector(0.0,0.0,0.0)
+//        val camVector: Vector = Vector(0.0,0.0,0.0) todo: remove this comment
 //        var pixel: Pixel
 
 /*        pixel = pixels[0][0]
@@ -48,18 +48,18 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
             for (pixel in pixRows) {
 //                pixel = pixels[x][y]
 //                rayDot = point0 + (horizAdder * pixels[pixRows].indexOf(pixel))
-                rayDot = point0 + (horizAdder * pixRows.indexOf(pixel))
+//                rayDot = point0 + (horizAdder * pixRows.indexOf(pixel)) todo: remove this comment
 //                println("rayDot: " + rayDot.x  + " " + rayDot.y + " " + rayDot.z)
 //                println("rayDot x: " + rayDot.x)
 //                println("rayDot y: " + rayDot.y)
 //                println("rayDot z: " + rayDot.z)
 //                println("----")
 //                ray = Vector(rayDot.x, rayDot.y, rayDot.z)
-                ray = !Vector(rayDot.x, rayDot.y, rayDot.z)
+//                ray = !Vector(rayDot.x, rayDot.y, rayDot.z) todo: remove this comment
 //                println("ray: " + ray.x  + " " + ray.y + " " + ray.z)
-//                println("ray Len: " + ray.getLength())
-                val color = scene.trace(ray, camVector)
-                pixel.color = color
+//                println("ray Len: " + ray.getModulo())
+//                val color = scene.trace(ray, camVector) todo: remove this comment
+//                pixel.color = color todo: remove this comment
                 +pixel
             }
 //            horizAdder = Point(pixelDim, 0.0, 0.0)

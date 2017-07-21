@@ -1,14 +1,14 @@
 import java.util.ArrayList
 
 class Scene {
-    val sphere: Sphere = Sphere(Vector(30.0, 300.0, 45.0), 30.0)
+//    val sphere: Sphere = Sphere(Vector(30.0, 300.0, 45.0), 30.0) todo: remove this comment
     val sky: Sky = Sky()
     var objects = ArrayList<Objects>()
     var color: Int = 0
 //    var color: Int = sphere.getAlbedo()
 
     init {
-        objects.add(sphere)
+//        objects.add(sphere) todo: remove this comment
         objects.add(sky)
     }
 

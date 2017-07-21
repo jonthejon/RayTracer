@@ -6,7 +6,8 @@ class Sky : Objects {
 
     override fun checkColision(ray: Vector, origin: Vector): Boolean {
         val testVec = ray + ray
-        return (testVec.z > ray.z)
+        return false // todo: remove this statement
+//        return (testVec.z > ray.z) todo: remove this comment
     }
 
     override fun getColor(): Int {
@@ -14,10 +15,8 @@ class Sky : Objects {
     }
 /*
     override fun getReflectVec(): Vector {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getNormalVec(): Vector {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }*/
 }
