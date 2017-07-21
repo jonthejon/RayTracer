@@ -1,0 +1,1 @@
+data class Material (val albedo: Double)
