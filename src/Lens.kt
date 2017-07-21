@@ -17,13 +17,11 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
         val vertAdder: Point = Point(0.0, 0.0, -pixelDim)
         var rayDot: Point
         var ray: Vector
-//        val camVector: Vector = Vector(Point(0.0,0.0,0.0))
         for (pixRows in pixels) {
             for (pixel in pixRows) {
                 rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toDouble())
                 ray = !Vector(rayDot)
                 val color = scene.trace(ray)
-//                val color = scene.trace(ray, camVector)
                 pixel.color = color
                 +pixel
             }
@@ -41,9 +39,9 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
             for (pixel in pixRows) {
 //            for (x in 0..(this.xRes - 1)) {
                 val color = pixel.color
-//                val color = pixels[x][y].color
+//                val albedo = pixels[x][y].albedo
 //                println(pixels[x][y].numRays)
-//                image.setRGB(x,y,color)
+//                image.setRGB(x,y,albedo)
 //                println("pixel x: " + pixels.indexOf(pixRows))
 //                println("pixel y: " + pixRows.indexOf(pixel))
 //                println("pixel x: " + countx)

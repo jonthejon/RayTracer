@@ -1,7 +1,8 @@
-interface Objects {
-//    fun checkColision(ray: Vector, origin: Vector): Boolean
-    fun checkColision(ray: Vector): Boolean
-    open fun getColor(): Int
-//    open fun getReflectVec(): Vector
-//    open fun getNormalVec(): Vector
+abstract class Objects {
+
+    abstract val material: Material
+
+    abstract fun checkColision(ray: Vector): Boolean
+    abstract fun getColor(): Int
+    abstract fun isLightSource(): Boolean
 }

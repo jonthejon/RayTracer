@@ -1,16 +1,14 @@
 import java.awt.Color
 
-data class Sphere (val center: Point, val r: Double) : Objects {
+data class Sphere (val center: Point, val r: Double) : Objects() {
 
-    val color: Color = Color(255,150,50)
-//    val albedo: Double = 0.75
+    override val material: Material = Material(0.75)
         var normalVector: Vector = Vector(Point(0.0,0.0,0.0))
     var ray: Vector = Vector(Point(0.0,0.0,0.0))
     var origin: Vector = Vector(Point(0.0,0.0,0.0))
     var centerVec: Vector = Vector(this.center)
 //    var reflect: Vector = Vector(0.0,0.0,0.0)
 
-//    override fun checkColision(ray: Vector, origin: Vector): Boolean {
     override fun checkColision(ray: Vector): Boolean {
                 this.ray = ray
         this.origin = origin
@@ -35,7 +33,11 @@ data class Sphere (val center: Point, val r: Double) : Objects {
     }
 
     override fun getColor(): Int {
-        return this.color.rgb
+        return Color(255,150,50).rgb
+//        return this.getAlb().toInt()
     }
 
+    override fun isLightSource(): Boolean {
+        return false
+    }
 }
