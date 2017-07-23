@@ -8,6 +8,7 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
     val height: Double = this.yRes * pixelDim
     val dist: Double = ((width/2) / (Math.tan(0.6911504/2)))
     val pixels = Array<Array<Pixel>>(yRes) {Array<Pixel>(xRes) {Pixel()}}
+    val numOfRaysPixel: Int = 1
 
     fun shootRays(): Unit {
         val scene: Scene = Scene()
@@ -17,19 +18,22 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
         val vertAdder: Point = Point(0.0, 0.0, -pixelDim)
         var rayDot: Point
         var ray: Vector
-        for (pixRows in pixels) {
-            for (pixel in pixRows) {
-                rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toDouble())
-                ray = !Vector(rayDot)
-                val color = scene.trace(ray, 0)
+        for (laps in 1..numOfRaysPixel) {
+            for (pixRows in pixels) {
+                for (pixel in pixRows) {
+                    rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toDouble())
+                    ray = !Vector(rayDot)
+                    val color = scene.trace(ray, 0)
 //                if (color.red == 97) println("Got Sky")
 //                if (color.red == 0) println("floor")
 //                println(color)
-                pixel.addColor(color)
+                    pixel.addColor(color)
 //                pixel.color = color
-                +pixel
+                    +pixel
+                }
+                point0 += vertAdder
             }
-            point0 += vertAdder
+            point0 = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
         }
     }
 
@@ -42,6 +46,7 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
 //        for (y in 0..(this.yRes - 1)) {
             for (pixel in pixRows) {
 //            for (x in 0..(this.xRes - 1)) {
+//                println(pixel.colorArr.size)
                 val color = pixel.getFinalColor()
 //                val color = pixel.color
 //                val albedo = pixels[x][y].albedo
