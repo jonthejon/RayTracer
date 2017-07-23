@@ -1,3 +1,5 @@
+import java.awt.Color
+
 /**
  * Created by JonathanOliveira on 18/07/17.
  */
@@ -13,4 +15,12 @@ fun main (args: Array<String>) {
         }
     }
 
+}
+
+fun Color.albedo(albedo: Point): Color {
+    return Color((this.red * albedo.x).toInt(), (this.green * albedo.y).toInt(), (this.blue * albedo.z).toInt())
+}
+
+fun Color.lambertian(flux: Double): Color {
+    return Color((this.red * flux).toInt(), (this.green * flux).toInt(), (this.blue * flux).toInt())
 }

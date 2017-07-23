@@ -1,1 +1,1 @@
-data class Material (val albedo: Double)
+data class Material (val albedo: Point)

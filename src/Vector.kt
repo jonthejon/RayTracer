@@ -1,5 +1,6 @@
 //data class Vector(val x: Double, val y: Double, val z: Double) {
 data class Vector(var origin: Point, val direction: Point) {
+    constructor() : this(Point(0.0, 0.0, 0.0), Point(0.0, 0.0, 0.0))
     constructor(direction: Point) : this(Point(0.0, 0.0, 0.0), direction)
 
     //    addition
