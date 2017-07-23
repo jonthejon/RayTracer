@@ -100,11 +100,22 @@ class VectorPointTest {
 
         vec1 = Vector(Point(2.0, 2.0, 2.0), Point(5.0, 6.0, 9.0))
         product = !vec1
+//        println(product.direction.x)
+//        println(product.direction.y)
+//        println(product.direction.z)
 //        println("Final modulo: " + product.getModulo())
         assertTrue(product.getModulo() - 1 < 0.00001)
 
         vec1 = Vector(Point(1.0, 1.0, 1.0))
         product = !vec1
+        assertTrue(product.getModulo() - 1 < 0.00001)
+
+        vec1 = Vector(Point(10.0, 10.0, 10.0), Point(5.0, 6.0, 9.0))
+        product = !vec1
+//        println("Final modulo: " + product.getModulo())
+//        println(product.direction.x)
+//        println(product.direction.y)
+//        println(product.direction.z)
         assertTrue(product.getModulo() - 1 < 0.00001)
     }
 

@@ -1,7 +1,9 @@
 //data class Vector(val x: Double, val y: Double, val z: Double) {
-data class Vector(var origin: Point, val direction: Point) {
+data class Vector(var origin: Point, var direction: Point) {
     constructor() : this(Point(0.0, 0.0, 0.0), Point(0.0, 0.0, 0.0))
     constructor(direction: Point) : this(Point(0.0, 0.0, 0.0), direction)
+
+//    var isUnit: Boolean = false
 
     //    addition
     operator fun plus(other: Vector): Vector {
@@ -16,9 +18,15 @@ data class Vector(var origin: Point, val direction: Point) {
 
     //    dot product
     operator fun times(other: Vector): Double {
-        val newThis = toOrigin(this)
-        val newOther = toOrigin(other)
+        val newThis = shiftToOrigin(this)
+        val newOther = shiftToOrigin(other)
         return (newThis.direction.x * newOther.direction.x) + (newThis.direction.y * newOther.direction.y) + (newThis.direction.z * newOther.direction.z)
+    }
+
+    //    dot product with Point
+    operator fun times(point: Point): Double {
+        val newThis = shiftToOrigin(this)
+        return (newThis.direction.x * point.x) + (newThis.direction.y * point.y) + (newThis.direction.z * point.z)
     }
 
     //    scalar product
@@ -36,20 +44,28 @@ data class Vector(var origin: Point, val direction: Point) {
 
     //    unit
     operator fun not(): Vector {
-        val newThis = toOrigin(this)
+        val newThis = shiftToOrigin(this)
         val length = newThis.getModulo()
+//        this.isUnit = true
 //        println("length: " + length)
-        return Vector(this.origin, this.origin + newThis.direction / length)
+        return Vector(this.origin, newThis.direction / length)
     }
 
     //    length
     fun getModulo(): Double {
-        val newThis = toOrigin(this)
-        val power = 2.0
-        return Math.sqrt(Math.pow(newThis.direction.x, power) + Math.pow(newThis.direction.y, power) + Math.pow(newThis.direction.z, power))
+        if (this.isUnitized()) {
+            val power = 2.0
+            return Math.sqrt(Math.pow(this.direction.x, power) + Math.pow(this.direction.y, power) + Math.pow(this.direction.z, power))
+        } else {
+//            val newThis = shiftToOrigin(this)
+            return this.direction.getDistance(this.origin)
+        }
+//        val newThis = shiftToOrigin(this)
+//        val power = 2.0
+//        return Math.sqrt(Math.pow(newThis.direction.x, power) + Math.pow(newThis.direction.y, power) + Math.pow(newThis.direction.z, power))
     }
 
-    private fun toOrigin(vec: Vector): Vector {
+    private fun shiftToOrigin(vec: Vector): Vector {
 //        println("Origin x: " + (vec.origin - vec.origin).x)
 //        println("Origin y: " + (vec.origin - vec.origin).y)
 //        println("Origin z: " + (vec.origin - vec.origin).z)
@@ -57,6 +73,12 @@ data class Vector(var origin: Point, val direction: Point) {
 //        println("Direction y: " + (vec.direction - vec.origin).y)
 //        println("Direction z: " + (vec.direction - vec.origin).z)
         return Vector(vec.origin - vec.origin, vec.direction - vec.origin)
+    }
+
+    private fun isUnitized(): Boolean {
+        val power = 2.0
+        val dist =  Math.sqrt(Math.pow(this.direction.x, power) + Math.pow(this.direction.y, power) + Math.pow(this.direction.z, power))
+        return (dist - 1 < 0.0001)
     }
 
 }

@@ -25,7 +25,7 @@ class Scene {
             testHit = obj.getHit(ray)
 //            if (!testHit.isHit) continue
 //            println("SKY or BALL")
-            if (testHit.hitVec.getModulo() <= hit.hitVec.getModulo()) {
+            if (testHit.hitPoint.getDistance(ray.origin) <= hit.hitPoint.getDistance(ray.origin)) {
 //                if (testHit.isHit) println("BALL")
 //                if (!testHit.isHit) println("SKY")
 //                println("test Vec: " + testHit.hitVec.getModulo() + " | hitVec: " + hit.hitVec.getModulo())

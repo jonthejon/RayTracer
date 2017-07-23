@@ -11,7 +11,7 @@ class Sky : Objects() {
         val testVec = ray + ray
         if (testVec.direction.z > ray.direction.z) {
 //            print("Hit SKY -> ")
-            return Hit(false,Vector(Point(1.0,1.0,1.0)),Vector(),material, this.getColor())
+            return Hit(false,Point(),Vector(),material, this.getColor())
         } else {
             return Hit()
         }
