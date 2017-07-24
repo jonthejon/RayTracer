@@ -3,6 +3,18 @@ data class Vector(var origin: Point, var direction: Point) {
     constructor() : this(Point(0.0, 0.0, 0.0), Point(0.0, 0.0, 0.0))
     constructor(direction: Point) : this(Point(0.0, 0.0, 0.0), direction)
 
+    companion object {
+        fun randomUnitVector(): Vector {
+            while (true) {
+//                println("trapped in VECTOR?")
+                val randVec: Vector = Vector(Point.getRandomPoint(-1.0, 1.0))
+                if (randVec.getModulo() <= 1) {
+                    return !randVec
+                }
+            }
+        }
+    }
+
 //    var isUnit: Boolean = false
 
     //    addition

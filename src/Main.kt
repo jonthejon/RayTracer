@@ -22,5 +22,6 @@ fun Color.albedo(albedo: Point): Color {
 }
 
 fun Color.lambertian(flux: Double): Color {
+//    println(flux)
     return Color((this.red * flux).toInt(), (this.green * flux).toInt(), (this.blue * flux).toInt())
 }

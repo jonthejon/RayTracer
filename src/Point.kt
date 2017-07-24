@@ -1,5 +1,18 @@
-data class Point (val x: Double, val y: Double, val z: Double) {
+import java.util.*
+
+data class Point (var x: Double, var y: Double, var z: Double) {
     constructor(): this(0.0,0.0,0.0)
+
+    companion object {
+        fun getRandomPoint(low: Double, high: Double): Point {
+            if (high <= low) throw IllegalArgumentException()
+            val randX: Double = Random().nextDouble()
+            val randY: Double = Random().nextDouble()
+            val randZ: Double = Random().nextDouble()
+            val range: Double = high - low
+            return Point(((randX * range) + low), ((randY * range) + low), ((randZ * range) + low))
+        }
+    }
 
     operator fun plus(other: Point): Point {
         return Point(this.x + other.x, this.y + other.y, this.z + other.z)

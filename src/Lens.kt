@@ -8,7 +8,7 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
     val height: Double = this.yRes * pixelDim
     val dist: Double = ((width/2) / (Math.tan(0.6911504/2)))
     val pixels = Array<Array<Pixel>>(yRes) {Array<Pixel>(xRes) {Pixel()}}
-    val numOfRaysPixel: Int = 1
+    val numOfRaysPixel: Int = 30
 
     fun shootRays(): Unit {
         val scene: Scene = Scene()
@@ -21,7 +21,10 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
         for (laps in 1..numOfRaysPixel) {
             for (pixRows in pixels) {
                 for (pixel in pixRows) {
+                    val randPoint: Point = Point.getRandomPoint(-midPix, midPix)
                     rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toDouble())
+                    rayDot.x += randPoint.x
+                    rayDot.z += randPoint.z
                     ray = !Vector(rayDot)
                     val color = scene.trace(ray, 0)
 //                if (color.red == 97) println("Got Sky")
@@ -46,6 +49,9 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
 //        for (y in 0..(this.yRes - 1)) {
             for (pixel in pixRows) {
 //            for (x in 0..(this.xRes - 1)) {
+//                if (pixel.colorArr.size != 3) {
+//                    println("Missed a Pixel!")
+//                }
 //                println(pixel.colorArr.size)
                 val color = pixel.getFinalColor()
 //                val color = pixel.color

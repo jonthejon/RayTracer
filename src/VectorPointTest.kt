@@ -37,6 +37,27 @@ class VectorPointTest {
         vec2 = Vector(Point(1.0, 8.0, 6.0), Point(3.0, 1.0, 4.0))
         result = vec1 * vec2
         assertTrue(result == (6.0)+(-14.0)+(4.0))
+
+//        vec1 = Vector(Point(2.0, 0.0, 0.0))
+//        vec2 = Vector(Point(2.0, 0.0, 0.0))
+//        result = vec1 * vec2
+//        println(result)
+//
+//        vec1 = Vector(Point(2.0, 0.0, 0.0))
+//        vec2 = Vector(Point(0.0, 0.0, 2.0))
+//        result = vec1 * vec2
+//        println(result)
+//
+//        vec1 = Vector(Point(2.0, 0.0, 0.0))
+//        vec2 = Vector(Point(-1.0, 0.0, 2.0))
+//        result = vec1 * vec2
+//        println(result)
+//
+//        vec1 = Vector(Point(2.0, 0.0, 0.0))
+//        vec2 = Vector(Point(1.0, 0.0, 2.0))
+//        result = vec1 * vec2
+//        println(result)
+
     }
 
     @org.junit.Test fun testAddition() {
@@ -173,5 +194,26 @@ class VectorPointTest {
         assertTrue(result.direction.z == 0.0)
         assertTrue(result.direction.y == 0.0)
         assertTrue(result.direction.x < 0)
+    }
+
+    @org.junit.Test fun testRandomGenerator() {
+        var random = Point.getRandomPoint(-1.0,1.0)
+        assertTrue(random.x >= -1 && random.x < 1)
+        assertTrue(random.y >= -1 && random.y < 1)
+        assertTrue(random.z >= -1 && random.z < 1)
+
+        random = Point.getRandomPoint(-0.004,0.6)
+        assertTrue(random.x >= -0.004 && random.x < 0.6)
+        assertTrue(random.y >= -0.004 && random.y < 0.6)
+        assertTrue(random.z >= -0.004 && random.z < 0.6)
+    }
+
+    @org.junit.Test fun testRandomUnitVector() {
+        var randVec1 = Vector.randomUnitVector()
+        var randVec2 = Vector.randomUnitVector()
+        var randVec3 = Vector.randomUnitVector()
+        assertTrue(randVec1.getModulo() - 1 < 0.001)
+        assertTrue(randVec2.getModulo() - 1 < 0.001)
+        assertTrue(randVec3.getModulo() - 1 < 0.001)
     }
 }

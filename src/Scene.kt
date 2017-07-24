@@ -2,10 +2,10 @@ import java.awt.Color
 import java.util.ArrayList
 
 class Scene {
-    val sphere: Sphere = Sphere(Point(45.0, 250.0, 45.0), 20.0)
+    val sphere: Sphere = Sphere(Point(30.0, 150.0, 20.0), 15.0)
 //    val sky: Sky = Sky()
-    var objects = ArrayList<Objects>()
-    var color: Color = Color(0,0,0)
+    val objects = ArrayList<Objects>()
+    val color: Color = Color(100,100,100)
     var currId: Int = 0
 //    var recursion = 0
 
@@ -38,13 +38,13 @@ class Scene {
         currId = 0
         if (hit.isHit) {
 //            println("hit BALL")
-            return this.trace(hit.ray, recursion + 1).albedo(hit.material.albedo)
+            return this.trace(hit.ray, recursion + 1).albedo(hit.material.albedo).lambertian(hit.lambertian)
 //            return ((hit.ray) * (hit.ray) * (hit.material.albedo) * (this.trace(ray, recursion + 1))).toInt()
         }
 //        if (recursion < 1) return color
         val testVec = ray + ray
         if (testVec.direction.z > ray.direction.z) {
-            return Color(97,215,250)
+            return Color(255,255,102)
         } else {
             return color
         }
