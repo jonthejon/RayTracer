@@ -2,27 +2,33 @@ import java.awt.Color
 
 data class Pixel(var numRays: Int = 0) {
 
-    val colorArr = ArrayList<Color>()
+    val colorArr = ArrayList<MyColor>()
 
     operator fun unaryPlus() {
         this.numRays++
     }
 
-    fun addColor(color: Color) {
+    fun addColor(color: MyColor) {
         this.colorArr.add(color)
     }
 
     fun getFinalColor(): Int {
         val numColors: Int = colorArr.size
-        var reds: Int = 0
-        var greens: Int = 0
-        var blues: Int = 0
+        var reds: Float = 0f
+        var greens: Float = 0f
+        var blues: Float = 0f
         for (color in colorArr) {
-            reds += color.red
-            greens += color.green
-            blues += color.blue
+            reds += color.r
+            greens += color.g
+            blues += color.b
         }
-        return Color(reds/numColors, greens/numColors, blues/numColors).rgb
+        reds = reds/numColors
+        greens = greens/numColors
+        blues = blues/numColors
+        if (reds > 1f) reds = 1f
+        if (greens > 1f) greens = 1f
+        if (blues > 1f) blues = 1f
+        return Color(reds, greens, blues).rgb
     }
 }
 //data class Pixel(var red: Int = 0, var green: Int = 0, var blue: Int = 0, var numRays: Int = 0)

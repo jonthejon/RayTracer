@@ -30,7 +30,7 @@ class LensTest {
     }
 
     @org.junit.Test fun testRayGenerator() {
-        val lens = Lens(200.0, 1600, 1200)
+        val lens = Lens(200.0, 600, 400)
         lens.shootRays()
         lens.render()
     }

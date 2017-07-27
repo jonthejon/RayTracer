@@ -2,7 +2,7 @@ import org.junit.Assert.*
 
 class SphereTest {
 
-    @org.junit.Test fun testSphereCollision () {
+/*    @org.junit.Test fun testSphereCollision () {
         val spherePos: Sphere = Sphere(Point(0.0, 50.0, 0.0), 20.0)
         val rayY: Vector = !Vector(Point(0.0,1.0,0.0))
         val rayX: Vector = !Vector(Point(1.0,0.0,0.0))
@@ -91,5 +91,5 @@ class SphereTest {
 //        println(spherePos.normal.direction.y)
 //        println(spherePos.normal.direction.z)
         assertTrue(spherePos.normal.getModulo() - 1 < 0.001)
-    }
+    }*/
 }

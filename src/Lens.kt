@@ -19,6 +19,7 @@ class Lens (val width: Double = 600.0, val xRes: Int = 600, val yRes: Int = 600)
         var rayDot: Point
         var ray: Vector
         for (laps in 1..numOfRaysPixel) {
+            print("\rIteration: " + laps + "/" + numOfRaysPixel)
             for (pixRows in pixels) {
                 for (pixel in pixRows) {
                     val randPoint: Point = Point.getRandomPoint(-midPix, midPix)

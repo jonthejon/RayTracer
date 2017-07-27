@@ -1,9 +1,9 @@
 import kotlin.concurrent.fixedRateTimer
 
-data class Sphere(val center: Point, val r: Double) : Objects() {
+data class Sphere(val center: Point, val r: Double, val material: Material, val objId: Int) : Objects() {
 
-    override val material: Material = Material(Point(0.96, 0.30,0.20))
-    override val id: Int = 1
+//    override val material: Material = Material(Point(0.96, 0.30,0.20))
+    override val id: Int = objId
     var normal = Vector()
     var L = Vector()
     var lambertian: Double = 0.0
