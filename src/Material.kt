@@ -1,1 +1,1 @@
-data class Material (val albedo: Point)
+data class Material (val albedo: Point, var lambertian: Float, val refl: Float)

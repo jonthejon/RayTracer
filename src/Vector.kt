@@ -68,4 +68,8 @@ data class Vector(var direction: Point) {
         return (dist - 1 < 0.0001)
     }
 
+    fun getReflection(normal: Vector): Vector {
+        return this - (normal * (this * normal) * 2f)
+    }
+
 }
