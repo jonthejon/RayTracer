@@ -1,7 +1,5 @@
-//data class Vector(val x: Double, val y: Double, val z: Double) {
-data class Vector(var origin: Point, var direction: Point) {
-    constructor() : this(Point(0.0, 0.0, 0.0), Point(0.0, 0.0, 0.0))
-    constructor(direction: Point) : this(Point(0.0, 0.0, 0.0), direction)
+data class Vector(var direction: Point) {
+    constructor() : this(Point(0f, 0f, 0f))
 
     companion object {
         fun randomUnitVector(): Vector {

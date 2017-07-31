@@ -1,15 +1,15 @@
 import java.util.*
 
-data class Point (var x: Double, var y: Double, var z: Double) {
-    constructor(): this(0.0,0.0,0.0)
+data class Point (var x: Float, var y: Float, var z: Float) {
+    constructor(): this(0f,0f,0f)
 
     companion object {
-        fun getRandomPoint(low: Double, high: Double): Point {
+        fun getRandomPoint(low: Float, high: Float): Point {
             if (high <= low) throw IllegalArgumentException()
-            val randX: Double = Random().nextDouble()
-            val randY: Double = Random().nextDouble()
-            val randZ: Double = Random().nextDouble()
-            val range: Double = high - low
+            val randX: Float = Random().nextFloat()
+            val randY: Float = Random().nextFloat()
+            val randZ: Float = Random().nextFloat()
+            val range: Float = high - low
             return Point(((randX * range) + low), ((randY * range) + low), ((randZ * range) + low))
         }
     }
@@ -22,32 +22,19 @@ data class Point (var x: Double, var y: Double, var z: Double) {
         return Point(this.x - other.x, this.y - other.y, this.z - other.z)
     }
 
-    operator fun times(num: Double): Point {
+    operator fun times(num: Float): Point {
         return Point(this.x * num, this.y * num, this.z * num)
     }
 
-    operator fun div(num: Double): Point {
-//        println("-------")
-//        println("number: " + num)
-//        println("new x: " + (this.x / num))
-//        println("new y: " + (this.y / num))
-//        println("new z: " + (this.z / num))
-//        println("-------")
-        val testPoint = Point((this.x / num), (this.y / num), (this.z / num))
-//        println("-------")
-//        println("number: " + num)
-//        println("new x: " + (testPoint.x))
-//        println("new y: " + (testPoint.y))
-//        println("new z: " + (testPoint.z))
-//        println("-------")
+    operator fun div(num: Float): Point {
         return Point((this.x / num), (this.y / num), (this.z / num))
     }
 
-    fun getDistance(other: Point): Double {
+    fun getDistance(other: Point): Float {
         val power = 2.0
-        val distX: Double = Math.pow((other.x - this.x), power)
-        val distY: Double = Math.pow((other.y - this.y), power)
-        val distZ: Double = Math.pow((other.z - this.z), power)
-        return Math.sqrt(distX + distY + distZ)
+        val distX: Double = Math.pow((other.x.toDouble() - this.x), power)
+        val distY: Double = Math.pow((other.y.toDouble() - this.y), power)
+        val distZ: Double = Math.pow((other.z.toDouble() - this.z), power)
+        return Math.sqrt(distX + distY + distZ).toFloat()
     }
 }
