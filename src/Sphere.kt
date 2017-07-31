@@ -1,6 +1,6 @@
 import java.util.*
 
-class Sphere(val center: Point, val r: Double, val material: Material) : Objects() {
+class Sphere(val center: Point, val r: Float, val material: Material) : Objects() {
 
     var normal = Vector()
     var L = Vector()
@@ -15,6 +15,10 @@ class Sphere(val center: Point, val r: Double, val material: Material) : Objects
             return Hit(true, hitPoint, L, material)
         } else {
             this.material.lambertian = 1f
+//            println("---")
+//            println("SPHERE HitPoint: " + this.hitPoint)
+//            println("SPHERE Reflection: " + this.Refl)
+//            println("---")
             return Hit(true, hitPoint, Refl, material)
         }
     }
@@ -24,7 +28,7 @@ class Sphere(val center: Point, val r: Double, val material: Material) : Objects
         this.origin = origin
         val b: Double = Math.pow((ray * (origin - center)).toDouble(), 2.0)
         val c: Double = Math.pow(origin.getDistance(center).toDouble(), 2.0)
-        val d: Double = Math.pow(r, 2.0)
+        val d: Double = Math.pow(r.toDouble(), 2.0)
         if ((b - c + d) >= 0) {
             return computeCollision(b - c + d)
         } else {

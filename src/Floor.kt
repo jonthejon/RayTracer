@@ -16,6 +16,10 @@ class Floor (val point: Point, val normalVec: Vector, val mat: Material) : Objec
             return Hit(true, hitPoint, L, material)
         } else {
             this.material.lambertian = 1f
+//            println("---")
+//            println("FLOOR HitPoint: " + this.hitPoint)
+//            println("FLOOR Reflection: " + this.Refl)
+//            println("---")
             return Hit(true, hitPoint, Refl, material)
         }
     }

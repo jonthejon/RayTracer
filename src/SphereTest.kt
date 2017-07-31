@@ -3,7 +3,7 @@ import org.junit.Assert.*
 class SphereTest {
 
     @org.junit.Test fun testSphereCollision () {
-        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20.0, Material())
+        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20f, Material())
         val rayY: Vector = !Vector(Point(0.0f,1.0f,0.0f))
         val rayX: Vector = !Vector(Point(1.0f,0.0f,0.0f))
         val rayZ: Vector = !Vector(Point(0.0f,0.0f,1.0f))
@@ -14,7 +14,7 @@ class SphereTest {
         assertTrue(testCollPosY)
         assertTrue(!testCollPosX && !testCollPosZ)
 
-        val sphereNeg: Sphere = Sphere(Point(0.0f, -50.0f, 0.0f), 20.0, Material())
+        val sphereNeg: Sphere = Sphere(Point(0.0f, -50.0f, 0.0f), 20f, Material())
         val testCollNegY = sphereNeg.checkCollision(cameraPos, rayY)
         val testCollNegX = sphereNeg.checkCollision(cameraPos, rayX)
         val testCollNegZ = sphereNeg.checkCollision(cameraPos, rayZ)
@@ -22,7 +22,7 @@ class SphereTest {
     }
 
     @org.junit.Test fun testCollisionPoint() {
-        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20.0, Material())
+        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20f, Material())
         val rayY: Vector = !Vector(Point(0.0f,1.0f,0.0f))
         val cameraPos: Point = Point(0f,0f,0f)
         spherePos.checkCollision(cameraPos, rayY)
@@ -47,7 +47,7 @@ class SphereTest {
     }
 
     @org.junit.Test fun testNormal() {
-        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20.0, Material())
+        val spherePos: Sphere = Sphere(Point(0.0f, 50.0f, 0.0f), 20f, Material())
         val rayY: Vector = !Vector(Point(0.0f,1.0f,0.0f))
         val cameraPos: Point = Point(0f,0f,0f)
         spherePos.checkCollision(cameraPos, rayY)
