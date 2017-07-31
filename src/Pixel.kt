@@ -31,4 +31,3 @@ data class Pixel(var numRays: Int = 0) {
         return Color(reds, greens, blues).rgb
     }
 }
-//data class Pixel(var red: Int = 0, var green: Int = 0, var blue: Int = 0, var numRays: Int = 0)
