@@ -1,8 +1,10 @@
 import java.awt.image.BufferedImage
 import java.io.*
+import java.util.*
 import javax.imageio.ImageIO
 
 class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, val iterations: Int = 1) {
+
 
     val pixelDim: Float = this.width / this.xRes
     val height: Float = this.yRes * pixelDim
@@ -18,17 +20,17 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
 
     fun shootRays(): Unit {
 //        val image: Image = this.getImage("floor1ref_sphere2sol")
-        var rayDot: Point
-        var ray: Vector
+//        var rayDot: Point
+//        var ray: Vector
         for (laps in 1..numOfRaysPixel) {
             print("\rIteration: " + laps + "/" + numOfRaysPixel)
             for (pixRows in pixels) {
                 for (pixel in pixRows) {
                     val randPoint: Point = Point.getRandomPoint(-midPix, midPix)
-                    rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toFloat())
+                    val rayDot = point0 + (horizAdder * pixRows.indexOf(pixel).toFloat())
                     rayDot.x += randPoint.x
                     rayDot.z += randPoint.z
-                    ray = !Vector(rayDot)
+                    val ray = !Vector(rayDot)
                     val color = scene.trace(cameraPos, ray, 0)
                     pixel.addColor(color)
                     +pixel
@@ -38,6 +40,7 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
             point0 = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
         }
         val image: Image = Image()
+        image.checkFileExists("floor1ref_sphere2sol", xRes, yRes)
         println("saving data to csv file.")
         image.addPixels("floor1ref_sphere2sol", pixels)
 //        this.saveImage(image)
@@ -140,6 +143,8 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
 
     companion object {
 
+        val randObj: Random = Random()
+
         fun render(xRes: Int, yRes: Int, fileName: String): Unit {
             println("Rendering image")
             val screen: BufferedImage = BufferedImage(xRes, yRes, BufferedImage.TYPE_INT_RGB) // creating the buffered image file
@@ -149,7 +154,7 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
             var county = 0 // counter for the y coordinate of the screen
             var fileReader: BufferedReader? = null // creating a new Buffered reader
             try {
-                fileReader = BufferedReader(FileReader("./" + fileName + ".csv")) // trying to open the file.
+                fileReader = BufferedReader(FileReader("./" + fileName + ".csv"), 4096) // trying to open the file.
                 val colorArr = ArrayList<MyColor>() // creating an arraylist that will hold all the colors of a given pixel
                 fileReader.forEachLine { // each line in the csv file represents a pixel
                     val strFloats: List<String> = it.split(comma) // getting a list of strings that holds the floats colors
@@ -160,7 +165,11 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
                             color = MyColor(-1f,-1f,-1f) // reset the color so we can fill it with other values
                             color.add(it.toFloat()) // adding the next float color into the color object
                         } else { // this will run in case the color object is not full. (there is at least one color that is -1f)
-                            color.add(it.toFloat()) // adding the next float color into the color object
+                            if (it.toFloat() < -2f) {
+
+                            } else {
+                                color.add(it.toFloat()) // adding the next float color into the color object
+                            }
                         }
                     } // end of the colors of this pixel. But the color object is full with the last triplet
                     if (color.isFull()) colorArr.add(color) // adding the filled color to the collor array
@@ -211,6 +220,10 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
             greens /= numColors
             blues /= numColors
             return MyColor(reds, greens, blues)
+        }
+
+        fun getRandomFloat(): Float {
+            return this.randObj.nextFloat()
         }
     }
 }
