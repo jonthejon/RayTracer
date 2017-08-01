@@ -3,7 +3,7 @@ import java.io.*
 import java.util.*
 import javax.imageio.ImageIO
 
-class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, val iterations: Int = 1) {
+class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, val iterations: Int = 1, val fileName: String = "image_01") {
 
 
     val pixelDim: Float = this.width / this.xRes
@@ -13,7 +13,7 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
     val numOfRaysPixel: Int = iterations
     val scene: Scene = Scene()
     val midPix: Float = pixelDim / 2
-    var point0: Point = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
+//    var point0: Point = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
     val horizAdder: Point = Point(pixelDim, 0f, 0f)
     val vertAdder: Point = Point(0f, 0f, -pixelDim)
     val cameraPos: Point = Point(0f,0f,0f)
@@ -23,6 +23,7 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
 //        var rayDot: Point
 //        var ray: Vector
         for (laps in 1..numOfRaysPixel) {
+            val point0: Point = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
             print("\rIteration: " + laps + "/" + numOfRaysPixel)
             for (pixRows in pixels) {
                 for (pixel in pixRows) {
@@ -35,16 +36,16 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
                     pixel.addColor(color)
                     +pixel
                 }
-                point0 += vertAdder
+//                point0 += vertAdder
+                point0.valAdd(vertAdder)
             }
-            point0 = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
+            point0.setPoint(Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix))
+//            point0 = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
         }
         val image: Image = Image()
         image.checkFileExists("floor1ref_sphere2sol", xRes, yRes)
         println("saving data to csv file.")
-        image.addPixels("floor1ref_sphere2sol", pixels)
-//        this.saveImage(image)
-//        this.saveImage(pixels)
+        image.addPixels(fileName, pixels)
     }
 
 /*    fun getImage(fileName: String): Image {

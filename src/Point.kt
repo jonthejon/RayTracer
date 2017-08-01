@@ -40,4 +40,16 @@ data class Point (var x: Float, var y: Float, var z: Float) {
         val distZ: Double = Math.pow((other.z.toDouble() - this.z), power)
         return Math.sqrt(distX + distY + distZ).toFloat()
     }
+
+    fun valAdd(other: Point) {
+        this.x += other.x
+        this.y += other.y
+        this.z += other.z
+    }
+
+    fun setPoint(other: Point) {
+        this.x = other.x
+        this.y = other.y
+        this.z = other.z
+    }
 }
