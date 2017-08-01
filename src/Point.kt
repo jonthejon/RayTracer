@@ -6,9 +6,12 @@ data class Point (var x: Float, var y: Float, var z: Float) {
     companion object {
         fun getRandomPoint(low: Float, high: Float): Point {
             if (high <= low) throw IllegalArgumentException()
-            val randX: Float = Random().nextFloat()
-            val randY: Float = Random().nextFloat()
-            val randZ: Float = Random().nextFloat()
+            val randX: Float = Lens.getRandomFloat()
+            val randY: Float = Lens.getRandomFloat()
+            val randZ: Float = Lens.getRandomFloat()
+//            val randX: Float = Random().nextFloat()
+//            val randY: Float = Random().nextFloat()
+//            val randZ: Float = Random().nextFloat()
             val range: Float = high - low
             return Point(((randX * range) + low), ((randY * range) + low), ((randZ * range) + low))
         }
