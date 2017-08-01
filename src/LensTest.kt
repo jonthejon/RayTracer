@@ -33,4 +33,8 @@ class LensTest {
         lens.shootRays()
         lens.render()
     }
+
+    @org.junit.Test fun render() {
+        Lens.render(600, 400,"floor1ref_sphere2sol")
+    }
 }
