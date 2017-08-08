@@ -55,7 +55,7 @@ class Image() {
         try {
 //            fileReader = BufferedReader(FileReader("./" + fileName + ".csv"))
             fileReader = BufferedReader(FileReader("./" + fileName + ".csv"), 4096)
-            fileWriter = BufferedWriter(FileWriter("./" + fileName + "2" + ".csv"), 4096)
+            fileWriter = BufferedWriter(FileWriter("./" + fileName + "_blend" + ".csv"), 4096)
 //            line = fileReader.readLine()
 //            println(line)
             line = fileReader.readLine()

@@ -10,8 +10,8 @@ class Sphere(val center: Point, val r: Float, val material: Material) : Objects(
     var hitPoint = Point()
     val bias: Float = 0.9999f
 
-    override fun getHit(ray: Vector): Hit {
-        if (Random().nextFloat() > this.material.refl) {
+    override fun getHitObj(): Hit {
+        if (Lens.getRandomFloat() > this.material.refl) {
             return Hit(true, hitPoint, L, material)
         } else {
             this.material.lambertian = 1f

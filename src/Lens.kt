@@ -43,7 +43,7 @@ class Lens (val width: Float = 600f, val xRes: Int = 600, val yRes: Int = 600, v
 //            point0 = Point(-(this.width/2) + midPix,this.dist,(this.height/2) - midPix)
         }
         val image: Image = Image()
-        image.checkFileExists("floor1ref_sphere2sol", xRes, yRes)
+        image.checkFileExists("floorR_2spheres_1600x1200", xRes, yRes)
         println("saving data to csv file.")
         image.addPixels(fileName, pixels)
     }

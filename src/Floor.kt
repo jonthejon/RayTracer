@@ -11,8 +11,8 @@ class Floor (val point: Point, val normalVec: Vector, val mat: Material) : Objec
     var hitPoint = Point()
     val bias: Float = 0.9999f
 
-    override fun getHit(ray: Vector): Hit {
-        if (Random().nextFloat() > this.material.refl) {
+    override fun getHitObj(): Hit {
+        if (Lens.getRandomFloat() > this.material.refl) {
             return Hit(true, hitPoint, L, material)
         } else {
             this.material.lambertian = 1f
