@@ -35,6 +35,7 @@ class LensTest {
     }
 
     @org.junit.Test fun render() {
-        Lens.render(1600, 1200,"floorR_2spheres_1600x12002")
+        Lens.render(1600, 1200,"floorR_2spheres_1600x1200_115")
+//        Lens.render("floorR_2spheres_1600x12002")
     }
 }
