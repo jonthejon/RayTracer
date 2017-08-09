@@ -23,9 +23,9 @@ data class Pixel(var numRays: Int = 0) : Serializable {
 
     fun getFinalColor(): Int {
         val numColors: Int = colorArr.size
-        var reds: Float = 0f
-        var greens: Float = 0f
-        var blues: Float = 0f
+        var reds: Double = 0.0
+        var greens: Double = 0.0
+        var blues: Double = 0.0
         for (color in colorArr) {
             reds += color.r
             greens += color.g
@@ -34,17 +34,17 @@ data class Pixel(var numRays: Int = 0) : Serializable {
         reds = reds/numColors
         greens = greens/numColors
         blues = blues/numColors
-        if (reds > 1f) reds = 1f
-        if (greens > 1f) greens = 1f
-        if (blues > 1f) blues = 1f
-        return Color(reds, greens, blues).rgb
+        if (reds > 1f) reds = 1.0
+        if (greens > 1f) greens = 1.0
+        if (blues > 1f) blues = 1.0
+        return Color(reds.toFloat(), greens.toFloat(), blues.toFloat()).rgb
     }
 
     fun getFinalMyColor(): MyColor {
         val numColors: Int = colorArr.size
-        var reds: Float = 0f
-        var greens: Float = 0f
-        var blues: Float = 0f
+        var reds: Double = 0.0
+        var greens: Double = 0.0
+        var blues: Double = 0.0
         for (color in colorArr) {
             reds += color.r
             greens += color.g
@@ -60,10 +60,10 @@ data class Pixel(var numRays: Int = 0) : Serializable {
     }
 
     fun getSumFinalMyColor(): MyColor {
-        val numColors: Int = colorArr.size
-        var reds: Float = 0f
-        var greens: Float = 0f
-        var blues: Float = 0f
+//        val numColors: Int = colorArr.size
+        var reds: Double = 0.0
+        var greens: Double = 0.0
+        var blues: Double = 0.0
         for (color in colorArr) {
             reds += color.r
             greens += color.g

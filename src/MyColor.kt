@@ -1,8 +1,8 @@
 import java.awt.Color
 import java.io.Serializable
 
-data class MyColor (var r: Float, var g: Float, var b: Float) : Serializable {
-    constructor() : this(0f,0f,0f)
+data class MyColor (var r: Double, var g: Double, var b: Double) : Serializable {
+    constructor() : this(0.0,0.0,0.0)
 
     private val serialVersionUID: Long = 1L
 
@@ -10,7 +10,7 @@ data class MyColor (var r: Float, var g: Float, var b: Float) : Serializable {
         return MyColor(this.r * albedo.x, this.g * albedo.y, this.b * albedo.z)
     }
 
-    operator fun times(flux: Float): MyColor {
+    operator fun times(flux: Double): MyColor {
         return MyColor(this.r * flux, this.g * flux, this.b * flux)
     }
 
@@ -27,29 +27,29 @@ data class MyColor (var r: Float, var g: Float, var b: Float) : Serializable {
     }
 
     fun getJavaColor(): Int {
-        if (this.r > 1f) this.r = 1f
-        if (this.g > 1f) this.g = 1f
-        if (this.b > 1f) this.b = 1f
+        if (this.r > 1f) this.r = 1.0
+        if (this.g > 1f) this.g = 1.0
+        if (this.b > 1f) this.b = 1.0
 //        println(this.r)
 //        println(this.g)
 //        println(this.b)
-        return Color(this.r, this.g, this.b).rgb
+        return Color(this.r.toFloat(), this.g.toFloat(), this.b.toFloat()).rgb
     }
 
     fun isFull(): Boolean {
-        return (this.r != -1f && this.g != -1f && this.b != -1f)
+        return (this.r != -1.0 && this.g != -1.0 && this.b != -1.0)
     }
 
-    fun add(color: Float) {
-        if (this.r == -1f) {
+    fun add(color: Double) {
+        if (this.r == -1.0) {
             this.r = color
             return
         }
-        if (this.g == -1f) {
+        if (this.g == -1.0) {
             this.g = color
             return
         }
-        if (this.b == -1f) {
+        if (this.b == -1.0) {
             this.b = color
             return
         }

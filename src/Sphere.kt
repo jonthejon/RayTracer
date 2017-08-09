@@ -1,6 +1,4 @@
-import java.util.*
-
-class Sphere(val center: Point, val r: Float, val material: Material) : Objects() {
+class Sphere(val center: Point, val r: Double, val material: Material) : Objects() {
 
     var normal = Vector()
     var L = Vector()
@@ -8,13 +6,13 @@ class Sphere(val center: Point, val r: Float, val material: Material) : Objects(
     var ray = Vector() // Unit vector that represents the incident ray that hit this object
     var origin = Point()
     var hitPoint = Point()
-    val bias: Float = 0.9999f
+    val bias: Double = 0.9999
 
     override fun getHitObj(): Hit {
-        if (Lens.getRandomFloat() > this.material.refl) {
+        if (Lens.getRandomDouble() > this.material.refl) {
             return Hit(true, hitPoint, L, material)
         } else {
-            this.material.lambertian = 1f
+            this.material.lambertian = 1.0
 //            println("---")
 //            println("SPHERE HitPoint: " + this.hitPoint)
 //            println("SPHERE Reflection: " + this.Refl)
@@ -28,7 +26,7 @@ class Sphere(val center: Point, val r: Float, val material: Material) : Objects(
         this.origin = origin
         val b: Double = Math.pow((ray * (origin - center)).toDouble(), 2.0)
         val c: Double = Math.pow(origin.getDistance(center).toDouble(), 2.0)
-        val d: Double = Math.pow(r.toDouble(), 2.0)
+        val d: Double = Math.pow(r, 2.0)
         if ((b - c + d) >= 0) {
             return computeCollision(b - c + d)
         } else {
@@ -38,8 +36,8 @@ class Sphere(val center: Point, val r: Float, val material: Material) : Objects(
 
     private fun computeCollision(toRoot: Double): Boolean {
         val a: Double = (ray * (origin - center)).toDouble()
-        val distPlus: Float = (-a + Math.sqrt(toRoot)).toFloat()
-        val distNeg: Float = (-a - Math.sqrt(toRoot)).toFloat()
+        val distPlus: Double = (-a + Math.sqrt(toRoot))
+        val distNeg: Double = (-a - Math.sqrt(toRoot))
         if (distPlus < 0 || distNeg < 0) return false
         if (distNeg <= distPlus) {
             hitPoint = (ray * distNeg * bias).direction + this.origin

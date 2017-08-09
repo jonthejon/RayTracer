@@ -1,5 +1,3 @@
-import java.util.*
-
 class Floor (val point: Point, val normalVec: Vector, val mat: Material) : Objects() {
 
     val material: Material = mat
@@ -9,13 +7,13 @@ class Floor (val point: Point, val normalVec: Vector, val mat: Material) : Objec
     var ray = Vector() // Unit vector that represents the incident ray that hit this object
     var origin = Point()
     var hitPoint = Point()
-    val bias: Float = 0.9999f
+    val bias: Double = 0.9999
 
     override fun getHitObj(): Hit {
-        if (Lens.getRandomFloat() > this.material.refl) {
+        if (Lens.getRandomDouble() > this.material.refl) {
             return Hit(true, hitPoint, L, material)
         } else {
-            this.material.lambertian = 1f
+            this.material.lambertian = 1.0
 //            println("---")
 //            println("FLOOR HitPoint: " + this.hitPoint)
 //            println("FLOOR Reflection: " + this.Refl)
@@ -28,11 +26,11 @@ class Floor (val point: Point, val normalVec: Vector, val mat: Material) : Objec
         this.ray = ray
         this.origin = origin
         val check = ray * normal
-        if (check == 0f) return false
+        if (check == 0.0) return false
         return computeCollision(check)
     }
 
-    private fun computeCollision(denom: Float): Boolean {
+    private fun computeCollision(denom: Double): Boolean {
         val numer = normal * (point - origin)
         val dist = numer / denom
         if (dist <= 0) return false // THIS CAN BE DANGEROUS! MAKE TESTS FOR THIS LATER.

@@ -2,17 +2,29 @@ import com.sun.org.apache.bcel.internal.generic.FLOAD
 
 class Square : Objects() {
 
-    val correction: Point = Point(10f,0f,0f)
+    val correction: Point = Point(0.0,0.0,0.0)
 
-    val material = Material(Point(0.7f, 0.8f, 0.90f), 1f, 0f)
-    val p0: Point = Point(0f, 80f, -10f) + correction
-    val p1: Point = Point(10f, 80f, -10f) + correction
-    val p2: Point = Point(10f, 80f, 0f) + correction
-    val p3: Point = Point(0f, 80f, 0f) + correction
-    val p4: Point = Point(10f, 80f, -10f) + correction
-    val p5: Point = Point(10f, 80f, 0f) + correction
-    val p6: Point = Point(0f, 80f, -10f) + correction
-    val p7: Point = Point(0f, 80f, 0f) + correction
+    val material = Material(Point(0.55, 0.8, 0.20), 1.0, 0.0)
+
+    val p0: Point = Point(0.0, 80.0, -10.0) + correction
+    val p1: Point = Point(10.0, 80.0, -10.0) + correction
+    val p2: Point = Point(10.0, 80.0, 0.0) + correction
+    val p3: Point = Point(0.0, 80.0, 0.0) + correction
+    val p4: Point = Point(10.0, 90.0, -10.0) + correction
+    val p5: Point = Point(10.0, 90.0, 0.0) + correction
+    val p6: Point = Point(0.0, 90.0, -10.0) + correction
+    val p7: Point = Point(0.0, 90.0, 0.0) + correction
+
+
+//    val p8: Point = Point(0.0, 80.0, -10.0) + correction
+//    val p9: Point = Point(10.0, 80.0, -10.0) + correction
+//    val p10: Point = Point(10.0, 80.0, 0.0) + correction
+//    val p11: Point = Point(0.0, 80.0, 0.0) + correction
+//    val p12: Point = Point(10.0, 80.0, -10.0) + correction
+//    val p13: Point = Point(10.0, 80.0, 0.0) + correction
+//    val p14: Point = Point(0.0, 80.0, -10.0) + correction
+//    val p15: Point = Point(0.0, 80.0, 0.0) + correction
+
 
     var origin = Point()
     var hitArr = ArrayList<Hit>()
@@ -22,11 +34,11 @@ class Square : Objects() {
     val triangleArr = ArrayList<Triangle>()
 
     init {
-    val tri1 = Triangle(p0,p1,p2,this.material)
-    val tri2 = Triangle(p0,p2,p3,this.material)
-    val tri3 = Triangle(p1,p4,p2,this.material)
-    val tri4 = Triangle(p4,p5,p2,this.material)
-    val tri5 = Triangle(p6,p5,p4,this.material)
+    val tri1 = Triangle(p0,p1,p2,this.material) // ok
+    val tri2 = Triangle(p0,p2,p3,this.material) // ok
+    val tri3 = Triangle(p1,p4,p2,this.material) // ok
+    val tri4 = Triangle(p4,p5,p2,this.material) // ok
+    val tri5 = Triangle(p6,p5,p4,this.material) //
     val tri6 = Triangle(p6,p7,p5,this.material)
     val tri7 = Triangle(p6,p3,p7,this.material)
     val tri8 = Triangle(p0,p3,p6,this.material)

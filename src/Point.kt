@@ -1,18 +1,16 @@
-import java.util.*
-
-data class Point (var x: Float, var y: Float, var z: Float) {
-    constructor(): this(0f,0f,0f)
+data class Point (var x: Double, var y: Double, var z: Double) {
+    constructor(): this(0.0,0.0,0.0)
 
     companion object {
-        fun getRandomPoint(low: Float, high: Float): Point {
+        fun getRandomPoint(low: Double, high: Double): Point {
             if (high <= low) throw IllegalArgumentException()
-            val randX: Float = Lens.getRandomFloat()
-            val randY: Float = Lens.getRandomFloat()
-            val randZ: Float = Lens.getRandomFloat()
+            val randX: Double = Lens.getRandomDouble()
+            val randY: Double = Lens.getRandomDouble()
+            val randZ: Double = Lens.getRandomDouble()
 //            val randX: Float = Random().nextFloat()
 //            val randY: Float = Random().nextFloat()
 //            val randZ: Float = Random().nextFloat()
-            val range: Float = high - low
+            val range: Double = high - low
             return Point(((randX * range) + low), ((randY * range) + low), ((randZ * range) + low))
         }
     }
@@ -25,20 +23,20 @@ data class Point (var x: Float, var y: Float, var z: Float) {
         return Point(this.x - other.x, this.y - other.y, this.z - other.z)
     }
 
-    operator fun times(num: Float): Point {
+    operator fun times(num: Double): Point {
         return Point(this.x * num, this.y * num, this.z * num)
     }
 
-    operator fun div(num: Float): Point {
+    operator fun div(num: Double): Point {
         return Point((this.x / num), (this.y / num), (this.z / num))
     }
 
-    fun getDistance(other: Point): Float {
-        val power = 2.0
-        val distX: Double = Math.pow((other.x.toDouble() - this.x), power)
-        val distY: Double = Math.pow((other.y.toDouble() - this.y), power)
-        val distZ: Double = Math.pow((other.z.toDouble() - this.z), power)
-        return Math.sqrt(distX + distY + distZ).toFloat()
+    fun getDistance(other: Point): Double {
+        val power: Double = 2.0
+        val distX: Double = Math.pow((other.x - this.x), power)
+        val distY: Double = Math.pow((other.y - this.y), power)
+        val distZ: Double = Math.pow((other.z - this.z), power)
+        return Math.sqrt(distX + distY + distZ)
     }
 
     fun valAdd(other: Point) {

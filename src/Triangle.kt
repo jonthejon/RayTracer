@@ -1,5 +1,3 @@
-import java.util.*
-
 data class Triangle(var p0: Point, var p1: Point, var p2: Point, var material: Material) : Objects() {
 //    constructor() : this(Point(0f,0f,0f), Point(0f,0f,0f), Point(0f,0f,0f), Material())
 
@@ -9,14 +7,14 @@ data class Triangle(var p0: Point, var p1: Point, var p2: Point, var material: M
     var ray = Vector() // Unit vector that represents the incident ray that hit this object
     var origin = Point()
     var hitPoint = Point()
-    val bias: Float = 0.9999f
+    val bias: Double = 0.9999
 
     override fun getHitObj(): Hit {
 //        println("Normal: " + normal)
-        if (Lens.getRandomFloat() > this.material.refl) {
+        if (Lens.getRandomDouble() > this.material.refl) {
             return Hit(true, hitPoint, L, material)
         } else {
-            this.material.lambertian = 1f
+            this.material.lambertian = 1.0
             return Hit(true, hitPoint, Refl, material)
         }
     }
@@ -51,10 +49,10 @@ data class Triangle(var p0: Point, var p1: Point, var p2: Point, var material: M
         if (dist <= 0) return false
 
         hitPoint= (ray * dist * bias).direction + origin
-//        val (x,y,z) = hitPoint
+//        val (x,y,zVector) = hitPoint
 //        println("X: " + x)
 //        println("Y: " + y)
-//        println("Z: " + z)
+//        println("Z: " + zVector)
 //        println("Normal: " + normal)
         computeL()
         return true
