@@ -5,7 +5,8 @@ This is a Ray Tracer written in Kotlin. It is good to notice that there are no e
 
 Here are some cool pics you can generate so far with this tracer:
 
-
+![Spheres with reflection](https://github.com/jonthejon/RayTracer/blob/master/2%20spheres%20refl.png)
+![Shadows](https://github.com/jonthejon/RayTracer/blob/master/wallsTest%20copy.png)
 
 ### Prerequisites
 
