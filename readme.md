@@ -1,87 +1,57 @@
-# Project Title
+# Ray Tracer
 
-One Paragraph of project description goes here
+This is a Ray Tracer written in Kotlin. It is good to notice that there are no external libraries being used in this project, so all functionalities are developed from scratch using Kotlin and some Java Collection classes. This Ray Tracer is still in development and more functionalities will be added in the following days/weeks.
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Here are some cool pics you can generate so far with this tracer:
+
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Make sure you have a Java Virtual Machine up and running on your machine if you want to run this software, since Kotlin targets the standard JVM and uses a bunch of Java features.
+
+[KOTLIN](https://kotlinlang.org/) - start here if you want to learn more about kotlin.
+
+### Developing
+
+If you want to help or just in the mood to doodle around with the code, I suggest downloading the IntelliJ IDEA. It's a IDE from the guys at JetBrain, the same company that created Kotlin. So you can expect a mature development ecosystem for Kotlin.
+
+[INTELLIJ](https://www.jetbrains.com/idea/) - download the IntelliJ IDEA here.
+
+### Rendering
+
+You can define the objects that will compose the scene inside the Scene.kt class.
 
 ```
-Give examples
+val sphere: Sphere = Sphere(Point(-13.0, 0.0, 80.0), 10.0, Material(Point(0.96, 0.30,0.20), 1.0, 0.0))
+val sphere2: Sphere = Sphere(Point(30.0, -3.0, 97.0), 7.0, Material(Point(0.9, 0.8,0.10), 1.0, 0.0))
+val cube: Composition = Composition(Point(-50.0,-10.0,70.0), Vector(Point(1.0,0.0,0.0)), Vector(Point(0.0,1.0,0.0)), Vector(Point(0.0,0.0,1.0)))
+val floor: Floor = Floor(Point(0.0, -10.0, 0.0), Vector(Point(0.0,1.0,0.0)), Material(Point(0.5,0.5,0.5), 1.0, 0.0))
 ```
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+You can define the camera settings inside the Main.kt class. To run the Tracer, just call the main method of the Main.kt class.
+The rendered image will be saved as an .png file inside your root folder.
 
 ```
-Give the example
+public fun main (args: Array<String>) {
+    val xRes: Int = 750;
+    val yRes: Int = 500;
+    var lens: Lens? = null
+    for (count in 1..1) {
+        println(count)
+        lens = Lens(15.0, xRes, yRes, Point(20.0,0.0,85.0), Vector(Point(0.0,0.35,1.0)), 400.0, 1, "wallsTest")
+        lens.shootRays()
+        lens = null
+    }
+Lens.render(xRes, yRes,"wallsTest")
 ```
 
-And repeat
+## Libraries
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+No external libraries have been used in this project. All classes are 100% Kotlin code written froms scratch. 
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* special thanks to [Tim Babb](https://github.com/trbabb) for sharing his deep knowledge on ray tracing. 
+* [Daniel Reina](https://github.com/dgrcode) for pairing a lot with me on this.
