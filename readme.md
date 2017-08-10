@@ -2,7 +2,6 @@
 
 This is a Ray Tracer written in Kotlin. It is good to notice that there are no external libraries being used in this project, so all functionalities are developed from scratch using Kotlin and some Java Collection classes. This Ray Tracer is still in development and more functionalities will be added in the following days/weeks.
 
-
 Here are some cool pics you can generate so far with this tracer:
 
 ![Spheres with reflection](https://github.com/jonthejon/RayTracer/blob/master/2%20spheres%20refl.png)
@@ -16,7 +15,7 @@ Make sure you have a Java Virtual Machine up and running on your machine if you 
 
 ### Developing
 
-If you want to help or just in the mood to doodle around with the code, I suggest downloading the IntelliJ IDEA. It's a IDE from the guys at JetBrain, the same company that created Kotlin. So you can expect a mature development ecosystem for Kotlin.
+If you want to help or if you're just in the mood to doodle around with the code, I suggest downloading the IntelliJ IDEA. It's an IDE from the guys at JetBrain, the same company that created Kotlin. So you can expect a mature development ecosystem for Kotlin.
 
 [INTELLIJ](https://www.jetbrains.com/idea/) - download the IntelliJ IDEA here.
 
@@ -50,7 +49,7 @@ Lens.render(xRes, yRes,"wallsTest")
 
 ## Libraries
 
-No external libraries have been used in this project. All classes are 100% Kotlin code written froms scratch. 
+No external libraries have been used in this project. All classes are 100% Kotlin code written from scratch. 
 
 ## Acknowledgments
 
